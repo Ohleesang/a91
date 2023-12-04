@@ -22,6 +22,7 @@ class Solution {
 
         //가변 되므로 mutable 형으로 변환
         var progList = progresses.toMutableList()
+        var speedList = speeds.toMutableList()
         var count = 0
 
         while(!progList.isEmpty()){
@@ -33,7 +34,7 @@ class Solution {
 
                 //작업 수행!
                 for(i in progList.indices){
-                    progList[i] += speeds[i]
+                    progList[i] += speedList[i]
                 }
 
             }
@@ -42,11 +43,13 @@ class Solution {
 
             //첫번쨰 리스트 제거 후 카운트
             progList.removeFirst()
+            speedList.removeFirst()
             count++
 
             try{
-            while(progList.first()>100) {//그 이후 완료된거 확인
+            while(progList.first()>=100) {//그 이후 완료된거 확인
                 progList.removeFirst()
+                speedList.removeFirst()
                 count++
             }
             }catch(e : Exception){//마지막 인자값일경우 예외가 발생하므로
@@ -67,8 +70,10 @@ class Solution {
 
 fun main(){
     var a = Solution()
-    a.solution(intArrayOf(93,39,55), intArrayOf(1,30,5))
+//    a.solution(intArrayOf(93,39,55), intArrayOf(1,30,5))
     //[2,1]   - 배포되는횟수 ...(0,1) , (2)
-    a.solution(intArrayOf(95,90,99,99,80,99), intArrayOf(1,1,1,1,1,1))
+//    a.solution(intArrayOf(95,90,99,99,80,99), intArrayOf(1,1,1,1,1,1))
     //[1,3,2] - (0),(1,2,3),(4,5)
+    a.solution(intArrayOf(90,90,90,90), intArrayOf(30,1,1,1))
+    //[1, 3]
 }
